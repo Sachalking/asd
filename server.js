@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const https =require("https");
 
@@ -5,6 +7,8 @@ const bodyparser = require("body-parser");
 
 var app =express();
 
+const api_key=process.env.API_KEY;
+const list = process.env.LIST_ID;
 
 app.use(bodyparser.urlencoded({extended:true}));
 
@@ -35,11 +39,13 @@ app.post("/",function(req,res){
 
 const jsondata =JSON.stringify(data);
 
-const url = "https://us13.api.mailchimp.com/3.0/lists/126a0d9b40 ";
+const url = `https://us13.api.mailchimp.com/3.0/lists/${list}`;
+
+
 
 const options = {
   method: 'POST',
-  auth:"sacah:fea3c3f715c1566d91d372fbe40d27c9-us13"
+  auth:`sachal:${api_key}`
 };
 
 
@@ -64,14 +70,5 @@ const options = {
 });
 
 app.listen(process.env.PORT || 9000,function(){
-    console.log("server is started ")
+    console.log("server is started ");
 });
-
-
-
-//API 
-// fea3c3f715c1566d91d372fbe40d27c9-us13
-
-
-//list 
-// 126a0d9b40  
