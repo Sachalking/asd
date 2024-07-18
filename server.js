@@ -2,8 +2,12 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.static(__dirname+'/public'));
+
 app.get('/',function(req,res){
-  res.sendFile("/home.html");
+
+    res.sendFile(__dirname+'/public/home.html');
+  
 });
 
 
